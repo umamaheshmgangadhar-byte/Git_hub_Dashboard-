@@ -58,7 +58,7 @@ function setError(message) {
 }
 
 async function loadData() {
-  const response = await fetch(`data/dashboard.json?ts=${Date.now()}`, {
+  const response = await fetch(`../data/dashboard.json?ts=${Date.now()}`, {
     cache: "no-store",
   });
   if (!response.ok) throw new Error(`Unable to load dashboard data (HTTP ${response.status}).`);

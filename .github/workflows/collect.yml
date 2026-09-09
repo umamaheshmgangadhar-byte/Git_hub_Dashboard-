@@ -22,10 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      GITHUB_ORGANIZATION: ${{ vars.GITHUB_ORGANIZATION }}
-      GITHUB_APP_ID: ${{ vars.GITHUB_APP_ID }}
-      GITHUB_APP_PRIVATE_KEY: ${{ secrets.GITHUB_APP_PRIVATE_KEY }}
-      GITHUB_API_URL: https://api.github.com
+      ACTIONS_DASHBOARD_ORGANIZATION: ${{ vars.ACTIONS_DASHBOARD_ORGANIZATION }}
+      ACTIONS_DASHBOARD_TOKEN: ${{ secrets.ACTIONS_DASHBOARD_TOKEN }}
     steps:
       - name: Checkout dashboard repository
         uses: actions/checkout@v6

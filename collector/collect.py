@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 """
-Organization-wide GitHub Actions metrics collector.
+GitHub account or organization-wide GitHub Actions metrics collector.
 
 Authentication:
-  - Creates a short-lived GitHub App JWT using GITHUB_APP_ID and
-    GITHUB_APP_PRIVATE_KEY.
-  - Finds the installation for GITHUB_ORGANIZATION.
-  - Exchanges the JWT for an installation access token.
-  - Uses only that short-lived token for GitHub REST API calls.
+    - Uses the ACTIONS_DASHBOARD_TOKEN personal access token for GitHub REST API calls.
 
 Output:
   data/dashboard.json
@@ -15,7 +11,6 @@ Output:
 
 from __future__ import annotations
 
-import base64
 import json
 import logging
 import os
@@ -27,7 +22,6 @@ from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import urlparse
 
-import jwt
 import requests
 
 
@@ -97,20 +91,6 @@ def display_duration(seconds: float | None) -> str:
         return f"{minutes}m {secs}s"
     hours, minutes = divmod(minutes, 60)
     return f"{hours}h {minutes}m"
-
-
-def create_app_jwt(app_id: str, private_key: str) -> str:
-    private_key = private_key.replace("\\n", "\n").strip()
-    if not private_key:
-        raise ValueError("GITHUB_APP_PRIVATE_KEY is empty.")
-
-    now = int(time.time())
-    payload = {
-        "iat": now - 60,
-        "exp": now + 540,
-        "iss": str(app_id),
-    }
-    return jwt.encode(payload, private_key, algorithm="RS256")
 
 
 class GitHubClient:
@@ -215,36 +195,6 @@ class GitHubClient:
                 first_url = next_url
                 params = {}
         return items
-
-
-def find_org_installation(app_client: GitHubClient, organization: str) -> dict[str, Any]:
-    installations = app_client.paginate("/app/installations")
-    matches = [
-        installation
-        for installation in installations
-        if str((installation.get("account") or {}).get("login", "")).lower()
-        == organization.lower()
-    ]
-    if not matches:
-        raise GitHubAPIError(
-            f"No GitHub App installation found for organization '{organization}'. "
-            "Install the App into the organization and grant it access to the required repositories."
-        )
-    if len(matches) > 1:
-        LOG.warning("Multiple installations matched %s; using the first matching installation.", organization)
-    return matches[0]
-
-
-def create_installation_token(
-    app_client: GitHubClient,
-    installation_id: int,
-) -> str:
-    response = app_client.request(
-        "POST",
-        f"/app/installations/{installation_id}/access_tokens",
-        expected=(201,),
-    )
-    return response.json()["token"]
 
 
 def classify_run(run: dict[str, Any]) -> str:
@@ -490,9 +440,9 @@ def build_dashboard(
             "runners": {
                 "available": False,
                 "reason": (
-                    "Organization runner inventory requires the GitHub App "
-                    "'Self-hosted runners' organization permission. This project "
-                    "intentionally does not request that additional permission."
+                    "Runner inventory requires the 'Self-hosted runners: Read' "
+                    "permission. This project intentionally does not request "
+                    "that additional permission."
                 ),
             }
         },
@@ -500,31 +450,18 @@ def build_dashboard(
 
 
 def main() -> int:
-    organization = os.environ.get("GITHUB_ORGANIZATION", "").strip()
-    app_id = os.environ.get("GITHUB_APP_ID", "").strip()
-    private_key = os.environ.get("GITHUB_APP_PRIVATE_KEY", "")
-    api_url = os.environ.get("GITHUB_API_URL", DEFAULT_API_URL).strip() or DEFAULT_API_URL
-
+    organization = os.environ.get("ACTIONS_DASHBOARD_ORGANIZATION", "").strip()
+    token = os.environ.get("ACTIONS_DASHBOARD_TOKEN", "").strip()
     if not organization:
-        raise ValueError("GITHUB_ORGANIZATION is required.")
-    if not app_id:
-        raise ValueError("GITHUB_APP_ID is required.")
-    if not private_key:
-        raise ValueError("GITHUB_APP_PRIVATE_KEY is required.")
+        raise ValueError("ACTIONS_DASHBOARD_ORGANIZATION is required.")
+    if not token:
+        raise ValueError("ACTIONS_DASHBOARD_TOKEN is required.")
 
     LOG.info("Starting organization collection for %s", organization)
 
-    app_jwt = create_app_jwt(app_id, private_key)
-    app_client = GitHubClient(app_jwt, api_url)
+    client = GitHubClient(token)
 
-    installation = find_org_installation(app_client, organization)
-    installation_id = installation["id"]
-    LOG.info("Using GitHub App installation %s", installation_id)
-
-    installation_token = create_installation_token(app_client, installation_id)
-    client = GitHubClient(installation_token, api_url)
-
-    repositories_raw = client.paginate("/installation/repositories")
+    repositories_raw = client.paginate(f"/users/{organization}/repos", {"type": "all"})
     repositories = [
         repo
         for repo in repositories_raw
