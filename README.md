@@ -89,7 +89,7 @@ To run it manually, open the repository's **Actions** tab, select **Collect GitH
 
 ## GitHub Pages
 
-If GitHub Pages is enabled for the repository's `main` branch, the dashboard is available under the `dashboard/` path of the Pages site, for example:
+The `pages.yml` workflow enables Pages and deploys the dashboard whenever `main` changes. If GitHub does not allow the workflow to enable Pages automatically, open **Repository settings > Pages**, set **Source** to **GitHub Actions**, and rerun the workflow. The dashboard is then available under the Pages site, for example:
 
 ```text
 https://OWNER.github.io/REPOSITORY/dashboard/
