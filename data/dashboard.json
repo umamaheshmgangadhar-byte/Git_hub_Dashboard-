@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "generated_at": null,
+  "window": {
+    "name": "Last 7 Days",
+    "start": null,
+    "end": null
+  },
+  "organization": "",
+  "metrics": {
+    "total_repositories": 0,
+    "total_workflows": 0,
+    "total_runs": 0,
+    "successful_runs": 0,
+    "failed_runs": 0,
+    "running_runs": 0,
+    "other_runs": 0,
+    "success_percentage": 0,
+    "failure_percentage": 0,
+    "average_duration_seconds": 0,
+    "fastest_run_seconds": 0,
+    "slowest_run_seconds": 0
+  },
+  "performance": {
+    "average_duration_seconds": 0,
+    "fastest_run_seconds": 0,
+    "slowest_run_seconds": 0,
+    "failure_rate": 0
+  },
+  "chart": {
+    "labels": [],
+    "successful": [],
+    "failed": [],
+    "running": []
+  },
+  "repositories": [],
+  "workflows": [],
+  "workflow_runs": [],
+  "failures": [],
+  "deployments": [],
+  "capabilities": {
+    "runners": {
+      "available": false,
+      "reason": "Runner inventory is disabled until the additional organization permission is granted."
+    }
+  }
+}

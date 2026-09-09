@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Organization-wide GitHub Actions monitoring dashboard">
+  <title>GitHub Actions Organization Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">GH</div>
+        <div>
+          <div class="brand-title">Actions Monitor</div>
+          <div class="brand-subtitle">Organization</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-section="dashboard">Dashboard</button>
+        <button class="nav-item" data-section="repositories">Repositories</button>
+        <button class="nav-item" data-section="workflows">Workflows</button>
+        <button class="nav-item" data-section="runs">Workflow Runs</button>
+        <button class="nav-item" data-section="deployments">Deployments</button>
+        <button class="nav-item" data-section="failures">Failures</button>
+        <button class="nav-item" data-section="runners">Runners</button>
+        <button class="nav-item" data-section="analytics">Analytics</button>
+        <button class="nav-item" data-section="settings">Settings</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="live-dot"></div>
+        <span>Live data from GitHub API</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">DEVOPS / SRE OBSERVABILITY</div>
+          <h1>GitHub Actions Organization Dashboard</h1>
+          <div class="header-meta">
+            <span id="organizationName">Loading organization…</span>
+            <span class="meta-separator">•</span>
+            <span id="lastUpdated">Loading data…</span>
+          </div>
+        </div>
+        <button class="refresh-btn" id="refreshButton">↻ Refresh</button>
+      </header>
+
+      <section class="filters">
+        <label>
+          <span>Repository</span>
+          <select id="repositoryFilter"><option value="">All</option></select>
+        </label>
+        <label>
+          <span>Workflow</span>
+          <select id="workflowFilter"><option value="">All</option></select>
+        </label>
+        <label>
+          <span>Branch</span>
+          <select id="branchFilter"><option value="">All</option></select>
+        </label>
+        <label>
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="">All</option>
+            <option value="success">Success</option>
+            <option value="failed">Failed</option>
+            <option value="running">Running</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label>
+          <span>Time range</span>
+          <select id="timeFilter">
+            <option value="7">Last 7 Days</option>
+            <option value="3">Last 3 Days</option>
+            <option value="1">Last 24 Hours</option>
+          </select>
+        </label>
+      </section>
+
+      <div id="errorBanner" class="error-banner hidden"></div>
+
+      <section id="section-dashboard" class="content-section active">
+        <div class="kpi-grid" id="kpiGrid"></div>
+
+        <div class="two-column">
+          <article class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <div class="panel-kicker">WORKFLOW ANALYTICS</div>
+                <h2>Workflow Runs — Last 7 Days</h2>
+              </div>
+            </div>
+            <div class="chart-wrap"><canvas id="workflowChart"></canvas></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <div class="panel-kicker">WORKFLOW PERFORMANCE</div>
+                <h2>Performance</h2>
+              </div>
+            </div>
+            <div id="performanceCards" class="metric-list"></div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <div class="panel-kicker">REPOSITORY HEALTH</div>
+              <h2>Repository Health</h2>
+            </div>
+            <button class="text-btn" data-section-link="repositories">View all →</button>
+          </div>
+          <div class="table-scroll"><table id="healthTable"></table></div>
+        </article>
+
+        <div class="two-column">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <div class="panel-kicker">LATEST ACTIVITY</div>
+                <h2>Recent Workflow Runs</h2>
+              </div>
+              <button class="text-btn" data-section-link="runs">View all →</button>
+            </div>
+            <div class="table-scroll"><table id="recentRunsTable"></table></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <div class="panel-kicker">ATTENTION REQUIRED</div>
+                <h2>Recent Failures</h2>
+              </div>
+              <button class="text-btn" data-section-link="failures">View all →</button>
+            </div>
+            <div id="failureList" class="failure-list"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="section-repositories" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">INVENTORY</div><h2>Repositories</h2></div></div>
+        <article class="panel"><div class="table-scroll"><table id="repositoriesTable"></table></div></article>
+      </section>
+
+      <section id="section-workflows" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">AUTOMATION INVENTORY</div><h2>Workflows</h2></div></div>
+        <article class="panel"><div class="table-scroll"><table id="workflowsTable"></table></div></article>
+      </section>
+
+      <section id="section-runs" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">EXECUTION HISTORY</div><h2>Workflow Runs</h2></div></div>
+        <article class="panel"><div class="table-scroll"><table id="runsTable"></table></div></article>
+      </section>
+
+      <section id="section-deployments" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">RELEASE ACTIVITY</div><h2>Deployments</h2></div></div>
+        <article class="panel"><div class="table-scroll"><table id="deploymentsTable"></table></div></article>
+      </section>
+
+      <section id="section-failures" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">INCIDENT SIGNAL</div><h2>Failures</h2></div></div>
+        <article class="panel"><div class="table-scroll"><table id="failuresTable"></table></div></article>
+      </section>
+
+      <section id="section-runners" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">EXECUTION CAPACITY</div><h2>Runners</h2></div></div>
+        <article class="panel empty-state">
+          <div class="empty-icon">◌</div>
+          <h3>Runner inventory is not enabled</h3>
+          <p>The collector intentionally requests only the permissions needed for repository, workflow, run, and deployment monitoring. Organization self-hosted runner inventory requires the additional <strong>Self-hosted runners: read</strong> organization permission.</p>
+        </article>
+      </section>
+
+      <section id="section-analytics" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">TRENDS</div><h2>Analytics</h2></div></div>
+        <div class="kpi-grid" id="analyticsKpis"></div>
+        <article class="panel chart-panel"><div class="panel-heading"><div><div class="panel-kicker">SEVEN-DAY TREND</div><h2>Run Outcome Trend</h2></div></div><div class="chart-wrap"><canvas id="analyticsChart"></canvas></div></article>
+      </section>
+
+      <section id="section-settings" class="content-section">
+        <div class="section-heading"><div><div class="panel-kicker">CONFIGURATION</div><h2>Settings</h2></div></div>
+        <article class="panel settings-panel">
+          <div class="setting-row"><span>Organization</span><strong id="settingsOrg">—</strong></div>
+          <div class="setting-row"><span>Data window</span><strong>Last 7 Days</strong></div>
+          <div class="setting-row"><span>Collector cadence</span><strong>Every 15 minutes</strong></div>
+          <div class="setting-row"><span>Data source</span><strong>GitHub REST API via GitHub App</strong></div>
+          <div class="setting-row"><span>Frontend authentication</span><strong>None — static GitHub Pages site</strong></div>
+          <div class="setting-row"><span>Generated data</span><strong>data/dashboard.json</strong></div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <span>GitHub Actions Organization Dashboard</span>
+        <span>Static frontend • GitHub Pages • Read-only collection</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
