@@ -89,11 +89,13 @@ To run it manually, open the repository's **Actions** tab, select **Collect GitH
 
 ## GitHub Pages
 
-The `pages.yml` workflow enables Pages and deploys the dashboard whenever `main` changes. If GitHub does not allow the workflow to enable Pages automatically, open **Repository settings > Pages**, set **Source** to **GitHub Actions**, and rerun the workflow. The dashboard is then available under the Pages site, for example:
+The `pages.yml` workflow enables Pages and deploys the dashboard whenever `main` changes. The workflow publishes `dashboard/index.html` at the Pages site root. If GitHub does not allow the workflow to enable Pages automatically, open **Repository settings > Pages**, set **Source** to **GitHub Actions**, and rerun the workflow. After one successful deployment, open:
 
 ```text
-https://OWNER.github.io/REPOSITORY/dashboard/
+https://OWNER.github.io/REPOSITORY/
 ```
+
+For this repository, the URL is `https://umamaheshmgangadhar-byte.github.io/Git_hub_Dashboard-/`. The `/dashboard/` path is only used for local development with `http://localhost:8000/dashboard/`.
 
 The page contains no frontend authentication. Anyone who can access the published Pages site can see the generated metrics, so do not collect data that should remain private.
 

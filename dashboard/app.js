@@ -58,11 +58,16 @@ function setError(message) {
 }
 
 async function loadData() {
-  const response = await fetch(`../data/dashboard.json?ts=${Date.now()}`, {
-    cache: "no-store",
-  });
-  if (!response.ok) throw new Error(`Unable to load dashboard data (HTTP ${response.status}).`);
-  return response.json();
+  const paths = ["data/dashboard.json", "../data/dashboard.json"];
+  let lastStatus = 404;
+
+  for (const path of paths) {
+    const response = await fetch(`${path}?ts=${Date.now()}`, { cache: "no-store" });
+    if (response.ok) return response.json();
+    lastStatus = response.status;
+  }
+
+  throw new Error(`Unable to load dashboard data (HTTP ${lastStatus}).`);
 }
 
 function populateFilters() {
