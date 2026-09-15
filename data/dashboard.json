@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T20:06:09Z",
+  "generated_at": "2026-09-15T22:54:44Z",
   "window": {
     "name": "Last 7 Days",
-    "start": "2026-09-08T20:06:09Z",
-    "end": "2026-09-15T20:06:09Z"
+    "start": "2026-09-08T22:54:44Z",
+    "end": "2026-09-15T22:54:44Z"
   },
   "organization": "umamaheshmgangadhar-byte",
   "metrics": {
     "total_repositories": 1,
     "total_workflows": 2,
-    "total_runs": 54,
-    "successful_runs": 48,
+    "total_runs": 55,
+    "successful_runs": 49,
     "failed_runs": 5,
     "running_runs": 1,
     "other_runs": 0,
-    "success_percentage": 90.57,
-    "failure_percentage": 9.43,
-    "average_duration_seconds": 15.887,
+    "success_percentage": 90.74,
+    "failure_percentage": 9.26,
+    "average_duration_seconds": 15.926,
     "fastest_run_seconds": 9.0,
     "slowest_run_seconds": 33.0
   },
   "performance": {
-    "average_duration_seconds": 15.887,
+    "average_duration_seconds": 15.926,
     "fastest_run_seconds": 9.0,
     "slowest_run_seconds": 33.0,
-    "failure_rate": 9.43
+    "failure_rate": 9.26
   },
   "chart": {
     "labels": [
@@ -46,7 +46,7 @@
       8,
       7,
       5,
-      4
+      5
     ],
     "failed": [
       0,
@@ -76,15 +76,15 @@
       "url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-",
       "visibility": "public",
       "workflows": 2,
-      "runs": 54,
-      "successful_runs": 48,
+      "runs": 55,
+      "successful_runs": 49,
       "failed_runs": 5,
       "running_runs": 1,
-      "success_percentage": 90.57,
-      "average_duration_seconds": 15.887,
+      "success_percentage": 90.74,
+      "average_duration_seconds": 15.926,
       "latest_status": "running",
       "latest_run": {
-        "run_id": 35017555686,
+        "run_id": 35033235568,
         "repository": "Git_hub_Dashboard-",
         "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
         "workflow_id": 353769853,
@@ -94,12 +94,12 @@
         "status": "in_progress",
         "conclusion": null,
         "category": "running",
-        "created_at": "2026-09-15T20:05:59Z",
-        "updated_at": "2026-09-15T20:06:04Z",
-        "duration_seconds": 10.951,
-        "duration": "11s",
+        "created_at": "2026-09-15T22:54:36Z",
+        "updated_at": "2026-09-15T22:54:40Z",
+        "duration_seconds": 8.161,
+        "duration": "8s",
         "actor": "umamaheshmgangadhar-byte",
-        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/35017555686"
+        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/35033235568"
       }
     }
   ],
@@ -125,7 +125,7 @@
   ],
   "workflow_runs": [
     {
-      "run_id": 35017555686,
+      "run_id": 35033235568,
       "repository": "Git_hub_Dashboard-",
       "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
       "workflow_id": 353769853,
@@ -135,10 +135,28 @@
       "status": "in_progress",
       "conclusion": null,
       "category": "running",
+      "created_at": "2026-09-15T22:54:36Z",
+      "updated_at": "2026-09-15T22:54:40Z",
+      "duration_seconds": 8.161,
+      "duration": "8s",
+      "actor": "umamaheshmgangadhar-byte",
+      "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/35033235568"
+    },
+    {
+      "run_id": 35017555686,
+      "repository": "Git_hub_Dashboard-",
+      "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
+      "workflow_id": 353769853,
+      "workflow_name": "Collect GitHub Actions Metrics",
+      "branch": "main",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "category": "success",
       "created_at": "2026-09-15T20:05:59Z",
-      "updated_at": "2026-09-15T20:06:04Z",
-      "duration_seconds": 10.951,
-      "duration": "11s",
+      "updated_at": "2026-09-15T20:06:17Z",
+      "duration_seconds": 18.0,
+      "duration": "18s",
       "actor": "umamaheshmgangadhar-byte",
       "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/35017555686"
     },
