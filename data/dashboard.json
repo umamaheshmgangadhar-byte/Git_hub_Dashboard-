@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-02T02:18:05Z",
+  "generated_at": "2026-10-02T08:52:53Z",
   "window": {
     "name": "Last 7 Days",
-    "start": "2026-09-25T02:18:05Z",
-    "end": "2026-10-02T02:18:05Z"
+    "start": "2026-09-25T08:52:53Z",
+    "end": "2026-10-02T08:52:53Z"
   },
   "organization": "umamaheshmgangadhar-byte",
   "metrics": {
@@ -17,12 +17,12 @@
     "other_runs": 0,
     "success_percentage": 100.0,
     "failure_percentage": 0.0,
-    "average_duration_seconds": 17.714,
+    "average_duration_seconds": 17.771,
     "fastest_run_seconds": 13.0,
     "slowest_run_seconds": 49.0
   },
   "performance": {
-    "average_duration_seconds": 17.714,
+    "average_duration_seconds": 17.771,
     "fastest_run_seconds": 13.0,
     "slowest_run_seconds": 49.0,
     "failure_rate": 0.0
@@ -39,14 +39,14 @@
       "2026-10-02"
     ],
     "successful": [
-      5,
+      4,
       6,
       6,
       4,
       5,
       4,
       5,
-      0
+      1
     ],
     "failed": [
       0,
@@ -81,10 +81,10 @@
       "failed_runs": 0,
       "running_runs": 1,
       "success_percentage": 100.0,
-      "average_duration_seconds": 17.714,
+      "average_duration_seconds": 17.771,
       "latest_status": "running",
       "latest_run": {
-        "run_id": 36954972633,
+        "run_id": 36986553087,
         "repository": "Git_hub_Dashboard-",
         "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
         "workflow_id": 353769853,
@@ -94,12 +94,12 @@
         "status": "in_progress",
         "conclusion": null,
         "category": "running",
-        "created_at": "2026-10-02T02:17:55Z",
-        "updated_at": "2026-10-02T02:17:59Z",
-        "duration_seconds": 10.076,
-        "duration": "10s",
+        "created_at": "2026-10-02T08:52:45Z",
+        "updated_at": "2026-10-02T08:52:49Z",
+        "duration_seconds": 8.776,
+        "duration": "9s",
         "actor": "umamaheshmgangadhar-byte",
-        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36954972633"
+        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36986553087"
       }
     }
   ],
@@ -125,7 +125,7 @@
   ],
   "workflow_runs": [
     {
-      "run_id": 36954972633,
+      "run_id": 36986553087,
       "repository": "Git_hub_Dashboard-",
       "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
       "workflow_id": 353769853,
@@ -135,10 +135,28 @@
       "status": "in_progress",
       "conclusion": null,
       "category": "running",
+      "created_at": "2026-10-02T08:52:45Z",
+      "updated_at": "2026-10-02T08:52:49Z",
+      "duration_seconds": 8.776,
+      "duration": "9s",
+      "actor": "umamaheshmgangadhar-byte",
+      "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36986553087"
+    },
+    {
+      "run_id": 36954972633,
+      "repository": "Git_hub_Dashboard-",
+      "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
+      "workflow_id": 353769853,
+      "workflow_name": "Collect GitHub Actions Metrics",
+      "branch": "main",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "category": "success",
       "created_at": "2026-10-02T02:17:55Z",
-      "updated_at": "2026-10-02T02:17:59Z",
-      "duration_seconds": 10.076,
-      "duration": "10s",
+      "updated_at": "2026-10-02T02:18:10Z",
+      "duration_seconds": 15.0,
+      "duration": "15s",
       "actor": "umamaheshmgangadhar-byte",
       "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36954972633"
     },
@@ -753,24 +771,6 @@
       "duration": "20s",
       "actor": "umamaheshmgangadhar-byte",
       "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36134206832"
-    },
-    {
-      "run_id": 36103934178,
-      "repository": "Git_hub_Dashboard-",
-      "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
-      "workflow_id": 353769853,
-      "workflow_name": "Collect GitHub Actions Metrics",
-      "branch": "main",
-      "event": "schedule",
-      "status": "completed",
-      "conclusion": "success",
-      "category": "success",
-      "created_at": "2026-09-25T06:40:32Z",
-      "updated_at": "2026-09-25T06:40:45Z",
-      "duration_seconds": 13.0,
-      "duration": "13s",
-      "actor": "umamaheshmgangadhar-byte",
-      "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/36103934178"
     }
   ],
   "failures": [],
