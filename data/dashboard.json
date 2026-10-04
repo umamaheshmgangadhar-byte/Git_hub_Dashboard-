@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-04T12:32:53Z",
+  "generated_at": "2026-10-04T17:03:47Z",
   "window": {
     "name": "Last 7 Days",
-    "start": "2026-09-27T12:32:53Z",
-    "end": "2026-10-04T12:32:53Z"
+    "start": "2026-09-27T17:03:47Z",
+    "end": "2026-10-04T17:03:47Z"
   },
   "organization": "umamaheshmgangadhar-byte",
   "metrics": {
     "total_repositories": 1,
     "total_workflows": 2,
-    "total_runs": 34,
-    "successful_runs": 33,
+    "total_runs": 35,
+    "successful_runs": 34,
     "failed_runs": 0,
     "running_runs": 1,
     "other_runs": 0,
     "success_percentage": 100.0,
     "failure_percentage": 0.0,
-    "average_duration_seconds": 16.909,
-    "fastest_run_seconds": 13.0,
+    "average_duration_seconds": 16.765,
+    "fastest_run_seconds": 12.0,
     "slowest_run_seconds": 24.0
   },
   "performance": {
-    "average_duration_seconds": 16.909,
-    "fastest_run_seconds": 13.0,
+    "average_duration_seconds": 16.765,
+    "fastest_run_seconds": 12.0,
     "slowest_run_seconds": 24.0,
     "failure_rate": 0.0
   },
@@ -46,7 +46,7 @@
       5,
       5,
       5,
-      2
+      3
     ],
     "failed": [
       0,
@@ -76,15 +76,15 @@
       "url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-",
       "visibility": "public",
       "workflows": 2,
-      "runs": 34,
-      "successful_runs": 33,
+      "runs": 35,
+      "successful_runs": 34,
       "failed_runs": 0,
       "running_runs": 1,
       "success_percentage": 100.0,
-      "average_duration_seconds": 16.909,
+      "average_duration_seconds": 16.765,
       "latest_status": "running",
       "latest_run": {
-        "run_id": 37202479356,
+        "run_id": 37219077270,
         "repository": "Git_hub_Dashboard-",
         "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
         "workflow_id": 353769853,
@@ -94,12 +94,12 @@
         "status": "in_progress",
         "conclusion": null,
         "category": "running",
-        "created_at": "2026-10-04T12:32:46Z",
-        "updated_at": "2026-10-04T12:32:50Z",
-        "duration_seconds": 7.446,
-        "duration": "7s",
+        "created_at": "2026-10-04T17:03:39Z",
+        "updated_at": "2026-10-04T17:03:43Z",
+        "duration_seconds": 8.473,
+        "duration": "8s",
         "actor": "umamaheshmgangadhar-byte",
-        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/37202479356"
+        "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/37219077270"
       }
     }
   ],
@@ -125,7 +125,7 @@
   ],
   "workflow_runs": [
     {
-      "run_id": 37202479356,
+      "run_id": 37219077270,
       "repository": "Git_hub_Dashboard-",
       "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
       "workflow_id": 353769853,
@@ -135,10 +135,28 @@
       "status": "in_progress",
       "conclusion": null,
       "category": "running",
+      "created_at": "2026-10-04T17:03:39Z",
+      "updated_at": "2026-10-04T17:03:43Z",
+      "duration_seconds": 8.473,
+      "duration": "8s",
+      "actor": "umamaheshmgangadhar-byte",
+      "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/37219077270"
+    },
+    {
+      "run_id": 37202479356,
+      "repository": "Git_hub_Dashboard-",
+      "full_repository_name": "umamaheshmgangadhar-byte/Git_hub_Dashboard-",
+      "workflow_id": 353769853,
+      "workflow_name": "Collect GitHub Actions Metrics",
+      "branch": "main",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "category": "success",
       "created_at": "2026-10-04T12:32:46Z",
-      "updated_at": "2026-10-04T12:32:50Z",
-      "duration_seconds": 7.446,
-      "duration": "7s",
+      "updated_at": "2026-10-04T12:32:58Z",
+      "duration_seconds": 12.0,
+      "duration": "12s",
       "actor": "umamaheshmgangadhar-byte",
       "run_url": "https://github.com/umamaheshmgangadhar-byte/Git_hub_Dashboard-/actions/runs/37202479356"
     },
